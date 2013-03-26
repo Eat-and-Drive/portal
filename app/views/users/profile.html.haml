@@ -1,0 +1,19 @@
+.page-header
+  %h1
+    My profile
+    %small= @user.name
+%section
+  %h2
+    Personal details
+    = link_to edit_user_path(@current_user), :class => 'btn' do
+      %i.icon-pencil
+      Edit
+  %dl.dl-horizontal
+    %dt  Name
+    %dd= @user.name
+    %dt  Email
+    %dd= @user.email
+    %dt  Telephone no.
+    %dd= @user.telephone
+    %dt  Organization
+    %dd= @user.organization.present? ? link_to(@user.organization.name, @user.organization) : '&mdash;'.html_safe

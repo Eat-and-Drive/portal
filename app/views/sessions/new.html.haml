@@ -1,0 +1,63 @@
+!!!
+%html{'lang' => 'en'}
+  %head
+    %title Eat &amp; Drive portal
+    = csrf_meta_tags
+    %meta{'name' => 'viewport', 'content' => 'width=device-width, initial-scale=1.0'}
+    = stylesheet_link_tag :application, :media => 'all'
+    = javascript_include_tag :application
+    :css
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      
+      .logo {
+        margin: 0 auto 30px;
+        display: block;
+      }
+  %body
+    .container
+      = image_tag 'logo-login.png', :alt => 'Eat&Drive', :class => 'logo'
+      = form_tag login_path, :class => 'form-signin' do
+        - if flash[:alert]
+          .alert.alert-error
+            %a.close{'data-dismiss' => 'alert'} &times;
+            = flash[:alert]
+        - if flash[:notice]
+          .alert.alert-info
+            %a.close{'data-dismiss' => 'alert'} &times;
+            = flash[:notice]
+        %h2.form-signin-heading Please sign in
+        = text_field_tag     'username', params[:username], :placeholder => 'Username', :class => 'input-block-level'
+        = password_field_tag 'password',               nil, :placeholder => 'Password', :class => 'input-block-level'
+        %label.checkbox
+          = check_box_tag 'remember-me'
+          Remember me
+        = submit_tag 'Sign in', :class => 'btn btn-large btn-primary'

@@ -1,0 +1,21 @@
+.page-header
+  %h1
+    = @organization.name
+.row
+  .span6
+    Info
+  .span6
+    %section
+      %h2 Users
+      %p
+        - @organization.users.each do |user|
+          .btn-group
+            = link_to user, :class => 'btn btn-primary' do
+              %i.icon-user.icon-white
+              = user.name
+            %button.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown'}
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to iconize('Edit', 'pencil'), edit_user_path(user)
+              %li= link_to iconize('Remove', 'ban-circle'), root_path
+              %li= link_to iconize('Delete user', 'trash'), user_path(user)

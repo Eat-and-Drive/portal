@@ -1,0 +1,9 @@
+= simple_form_for @organization, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name
+  = f.input :address
+  = f.input :city
+  = f.input :head_contact_name
+  = f.input :head_contact_phone
+  
+  .form-actions
+    = f.submit
