@@ -7,7 +7,9 @@ Portal::Application.routes.draw do
   end
 
   resources :users
-  resources :organizations
+  resources :organizations do
+    resources :employments
+  end
   
   match 'profile' => 'users#profile'
 

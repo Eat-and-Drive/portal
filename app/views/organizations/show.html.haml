@@ -3,19 +3,38 @@
     = @organization.name
 .row
   .span6
-    Info
+    %dl.dl-horizontal
+      %dt  Address
+      %dd
+        = @organization.address
+        %br
+        = @organization.zipcode
+        = @organization.city
+      %dt  Telephone
+      %dd= @organization.telephone
+      %dt  Head contacts
+      %dd
+        %ul
+          - @organization.head_contacts.each do |head_contact|
+            %li #{head_contact.name} (#{head_contact.telephone})
   .span6
     %section
       %h2 Users
+      #add_user_form
+        = form_for [@organization, Employment.new], :remote => true, :html => {:class => 'form-inline'} do |f|
+          = text_field_tag 'email', '', :placeholder => 'E-mail address', :class => 'input-medium'
+          = select_tag 'role', options_for_select(Employment::ROLES), :class => 'input-medium'
+          = f.submit 'Add'
       %p
-        - @organization.users.each do |user|
+        = content_tag_for :div, @organization.employments, :class => 'btn-group' do |employment|
           .btn-group
-            = link_to user, :class => 'btn btn-primary' do
-              %i.icon-user.icon-white
-              = user.name
+            = link_to employment.user, :class => 'btn btn-primary' do
+              - if employment.role == 'manager'
+                %i.icon-user.icon-white
+              = employment.user.name
             %button.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown'}
               %span.caret
             %ul.dropdown-menu
-              %li= link_to iconize('Edit', 'pencil'), edit_user_path(user)
-              %li= link_to iconize('Remove', 'ban-circle'), root_path
-              %li= link_to iconize('Delete user', 'trash'), user_path(user)
+              %li= link_to iconize('Edit', 'pencil'), edit_user_path(employment.user)
+              %li= link_to iconize('Remove', 'ban-circle'), organization_employment_path(@organization, employment), :method => :delete, :remote => true
+              %li= link_to iconize('Delete user', 'trash'), user_path(employment.user)

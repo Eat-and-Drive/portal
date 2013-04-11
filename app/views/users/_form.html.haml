@@ -1,11 +1,16 @@
 = simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :username
-  = f.input :password
-  = f.input :password_confirmation
-  = f.input :email
-  = f.input :name
-  = f.input :telephone
-  = f.input :role
+  %fieldset
+    %legend Account information
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation
+  %fieldset
+    %legend Personal details
+    = f.input :name
+    = f.input :telephone
+    = f.input :address
+    = f.input :zipcode
+    = f.input :city
   
   .form-actions
     = f.submit

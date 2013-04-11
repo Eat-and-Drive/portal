@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_filter :find_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :require_staff, :except => [:profile]
 
   def index
     @search = User.search(params[:search])
-    @users = @search.all
+    @users = @search.paginate(:page => params[:page])
   end
 
   def show

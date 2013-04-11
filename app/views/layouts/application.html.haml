@@ -20,6 +20,8 @@
               %li.dropdown
                 %a.dropdown-toggle{'href' => '#', 'data-toggle' => 'dropdown'}
                   = @current_user.name
+                  - if @current_user.staff?
+                    %span.label.label-inverse staff
                   %b.caret
                 %ul.dropdown-menu
                   %li= link_to 'My account', profile_path
@@ -29,10 +31,18 @@
               %li= link_to 'Dashboard', root_path
               %li.dropdown
                 %a.dropdown-toggle{'href' => '#', 'data-toggle' => 'dropdown'}
+                  Store
+                  %b.caret
+                %ul.dropdown-menu
+                  %li= link_to 'Opening hours', root_path
+                  %li= link_to 'Products', root_path
+                  %li= link_to 'Order history', root_path
+              %li.dropdown
+                %a.dropdown-toggle{'href' => '#', 'data-toggle' => 'dropdown'}
                   Administration
                   %b.caret
                 %ul.dropdown-menu
-                  %li= link_to 'Organizations', root_path
+                  %li= link_to 'Organizations', organizations_path
                   %li= link_to 'Users', users_path
     .container
       .row
@@ -41,3 +51,12 @@
       %hr
       %footer
         %p &copy; Eat&amp;Drive 2013
+        %p
+          superuser: #{@current_user.superuser? ? 'yes' : 'no'}
+        - if @organization.present?
+          %p
+            head_contact: #{@organization.head_contacts.include?(@current_user) ? 'yes' : 'no'}
+            %br
+            manager: #{@organization.employments.where(:user_id => @current_user.id, :role => 'manager').present? ? 'yes' : 'no'}
+            %br
+            employee: #{@organization.employments.where(:user_id => @current_user.id, :role => 'employee').present? ? 'yes' : 'no'}

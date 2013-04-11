@@ -1,16 +1,16 @@
 class SessionsController < ApplicationController
-  skip_before_filter :authorize
+  skip_before_filter :require_login
 
   layout false
 
   def new; end
 
   def create
-    if user = User.find_by_username(params[:username]).try(:authenticate, params[:password])
+    if user = User.find_by_email(params[:email]).try(:authenticate, params[:password])
       session[:user_id] = user.id
       redirect_to root_path
     else
-      redirect_to login_path, :alert => 'Wrong combination of username/password.'
+      redirect_to login_path, :alert => 'Wrong combination of e-mail address/password.'
     end
   end
 

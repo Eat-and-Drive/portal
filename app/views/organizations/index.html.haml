@@ -9,17 +9,19 @@
       %th= sort_link @search, :id, '#'
       %th= sort_link @search, :name
       %th
-      %th
   %tbody
     - @organizations.each do |organization|
       %tr
         %td= organization.id
         %td= organization.name
         %td
+          = link_to organization, :class => 'btn btn-small' do
+            %i.icon-eye-open
+            Show
           = link_to edit_organization_path(organization), :class => 'btn btn-small' do
             %i.icon-pencil
             Edit
-        %td
           = link_to organization_path(organization), :confirmation => 'Are you sure you cant to delete this organization?', :remote => true, :method => :delete, :class => 'btn btn-danger btn-small' do
             %i.icon-trash.icon-white
             Delete
+= will_paginate @organizations

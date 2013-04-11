@@ -73,6 +73,8 @@ class CreateBaseTables < ActiveRecord::Migration
       t.string :zipcode
       t.string :city
       t.string :telephone
+      
+      t.boolean :superuser
 
       t.timestamps
     end

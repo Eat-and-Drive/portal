@@ -15,5 +15,10 @@
     %dd= @user.email
     %dt  Telephone no.
     %dd= @user.telephone
-    %dt  Organization
-    %dd= @user.organization.present? ? link_to(@user.organization.name, @user.organization) : '&mdash;'.html_safe
+  %dl.dl-horizontal
+    %dt  Address
+    %dd= @user.address || "&mdash;".html_safe
+    %dt  Zipcode
+    %dd= @user.zipcode || "&mdash;".html_safe
+    %dt  City
+    %dd= @user.city || "&mdash;".html_safe

@@ -1,30 +1,42 @@
-.page-header
-  %h1
-    Users
-    .pull-right
-      = link_to 'Create user', new_user_path, :class => 'btn'
-%table.table.table-striped
-  %thead
-    %tr
-      %th= sort_link @search, :id, '#'
-      %th= sort_link @search, :username
-      %th= sort_link @search, :email
-      %th= sort_link @search, :name
-      %th= sort_link @search, :telephone
-      %th
-  %tbody
-    - @users.each do |user|
-      = content_tag_for(:tr, user) do
-        %td= user.id
-        %td= user.username
-        %td= user.email
-        %td= user.name
-        %td= user.telephone
-        %td
-          = link_to edit_user_path(user), :class => 'btn btn-small' do
-            %i.icon-pencil
-            Edit
-        %td
-          = link_to user_path(user), :remote => true, :confirm => 'Are you sure you want to delete?', :method => :delete, :class => 'btn btn-small btn-danger' do
-            %i.icon-trash.icon-white
-            Delete
+.row
+  .span9
+    %h3
+      Users
+      .pull-right
+        = link_to 'Create user', new_user_path, :class => 'btn'
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= sort_link @search, :id, '#'
+          %th= sort_link @search, :email
+          %th= sort_link @search, :name
+          %th= sort_link @search, :telephone
+          %th
+      %tbody
+        - @users.each do |user|
+          = content_tag_for(:tr, user) do
+            %td= user.id
+            %td= user.email
+            %td= user.name
+            %td= user.telephone
+            %td
+              = link_to user, :class => 'btn btn-small' do
+                %i.icon-eye-open
+                Show
+              = link_to edit_user_path(user), :class => 'btn btn-small' do
+                %i.icon-pencil
+                Edit
+              = link_to user_path(user), :remote => true, :confirm => 'Are you sure you want to delete?', :method => :delete, :class => 'btn btn-small btn-danger' do
+                %i.icon-trash.icon-white
+                Delete
+    = will_paginate @users
+  .span3
+    %h3 Filters
+    = form_for @search do |f|
+      = f.label :email_contains
+      = f.text_field :email_contains
+      = f.label :name_contains
+      = f.text_field :name_contains
+      = f.label :telephone_contains
+      = f.text_field :telephone_contains
+      = f.submit

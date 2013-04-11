@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+u = User.create(:email => 'cas@example.org', :password => 'cas', :password_confirmation => 'cas', :name => 'Cas Ebbers', :telephone => '06-36180545')
+u.superuser = true
+u.save
+
+o = Organization.create(:name => 'Texaco Stille Wald', :address => 'Rijksweg A18', :zipcode => '6940 AA', :city => 'Didam', :telephone => '0316-531990')
