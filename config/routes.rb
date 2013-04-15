@@ -14,5 +14,12 @@ Portal::Application.routes.draw do
   match 'profile' => 'users#profile'
 
   root :to => 'dashboard#index'
+  
+  namespace :api do
+    controller :login do
+      get 'login' => :new
+      post 'login' => :new
+    end
+  end
 
 end
