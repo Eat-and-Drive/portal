@@ -18,5 +18,6 @@ gem 'meta_search'
 gem 'simple_form'
 gem 'ancestry'
 gem 'will_paginate'
+gem 'rack-jsonp-middleware'
 
 gem 'capistrano'
