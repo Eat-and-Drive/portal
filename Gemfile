@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'sqlite3'
+gem 'mysql'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -17,3 +18,5 @@ gem 'meta_search'
 gem 'simple_form'
 gem 'ancestry'
 gem 'will_paginate'
+
+gem 'capistrano'
