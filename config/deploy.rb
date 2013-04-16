@@ -30,9 +30,9 @@ namespace :deploy do
   
   desc "Symlink database.yml"
   task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
   end
 end
 
 after "deploy:update_code", "deploy:migrate"
-after "deploy:update_code", "deploy:symlink_db"
+before "deploy:assets:precompile", "deploy:symlink_db"
