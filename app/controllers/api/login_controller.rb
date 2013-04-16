@@ -4,7 +4,6 @@ class Api::LoginController < Api::ApiController
     if user = User.find_by_email(params[:email]).try(:authenticate, params[:password])
       respond_to do |format|
         format.json { render :json => user }
-        format.jsonp { render :json => user }
         format.xml  { render :xml  => user }
       end
     else
