@@ -13,10 +13,8 @@
       %dt  Telephone
       %dd= @organization.telephone
       %dt  Head contacts
-      %dd
-        %ul
-          - @organization.head_contacts.each do |head_contact|
-            %li #{head_contact.name} (#{head_contact.telephone})
+      %dd#head_contacts
+        = render 'head_contacts'
   .span6
     %section
       %h2 Users
@@ -25,16 +23,6 @@
           = text_field_tag 'email', '', :placeholder => 'E-mail address', :class => 'input-medium'
           = select_tag 'role', options_for_select(Employment::ROLES), :class => 'input-medium'
           = f.submit 'Add'
-      %p
-        = content_tag_for :div, @organization.employments, :class => 'btn-group' do |employment|
-          .btn-group
-            = link_to employment.user, :class => 'btn btn-primary' do
-              - if employment.role == 'manager'
-                %i.icon-user.icon-white
-              = employment.user.name
-            %button.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown'}
-              %span.caret
-            %ul.dropdown-menu
-              %li= link_to iconize('Edit', 'pencil'), edit_user_path(employment.user)
-              %li= link_to iconize('Remove', 'ban-circle'), organization_employment_path(@organization, employment), :method => :delete, :remote => true
-              %li= link_to iconize('Delete user', 'trash'), user_path(employment.user)
+      %p#employments
+        = render @organization.employments
+%h2 Subsidiaries

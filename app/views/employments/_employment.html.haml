@@ -1,0 +1,14 @@
+= content_tag_for :div, employment, :class => 'btn-group' do |employment|
+  .btn-group
+    = link_to employment.user, :class => 'btn btn-primary' do
+      - if employment.role == 'manager'
+        %i.icon-user.icon-white
+      = employment.user.name
+    %button.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown'}
+      %span.caret
+    %ul.dropdown-menu
+      - if employment.is_head_contact?
+        %li= link_to iconize('Remove as head contact', 'arrow-down'), remove_head_contact_organization_employment_path(@organization, employment), :method => :put, :remote => true
+      - else
+        %li= link_to iconize('Add as head contact', 'arrow-up'), add_head_contact_organization_employment_path(@organization, employment), :method => :put, :remote => true
+      %li= link_to iconize('Remove', 'ban-circle'), organization_employment_path(@organization, employment), :method => :delete, :remote => true

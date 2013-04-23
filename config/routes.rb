@@ -8,7 +8,12 @@ Portal::Application.routes.draw do
 
   resources :users
   resources :organizations do
-    resources :employments
+    resources :employments do
+      member do
+        put 'add_head_contact'
+        put 'remove_head_contact'
+      end
+    end
   end
   
   match 'profile' => 'users#profile'

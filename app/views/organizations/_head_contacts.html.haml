@@ -1,0 +1,3 @@
+%ul
+  = content_tag_for :li, @organization.head_contacts do |head_contact|
+    #{head_contact.name} (#{head_contact.telephone})

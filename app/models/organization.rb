@@ -10,7 +10,7 @@ class Organization < ActiveRecord::Base
   has_many :products, :through => :assortments
 
   def head_contacts
-    users.joins(:employments).where(:employments => {:is_head_contact => true})
+    users.where(:employments => {:is_head_contact => true})
   end
 
 end
