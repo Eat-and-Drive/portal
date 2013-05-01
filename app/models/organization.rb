@@ -8,6 +8,8 @@ class Organization < ActiveRecord::Base
   has_many :opening_hours, :dependent => :destroy
   has_many :assortments, :dependent => :destroy
   has_many :products, :through => :assortments
+  
+  has_ancestry
 
   def head_contacts
     users.where(:employments => {:is_head_contact => true})
