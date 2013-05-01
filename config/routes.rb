@@ -25,6 +25,10 @@ Portal::Application.routes.draw do
       get 'login' => :new
       post 'login' => :new
     end
+    
+    controller :organizations do
+      get 'organizations' => :index
+    end
   end
 
 end
