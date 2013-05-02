@@ -22,4 +22,13 @@ class User < ActiveRecord::Base
       true
     end
   end
+  
+  def managed_stores
+    if superuser?
+      Organization.all
+    else
+      organizations.where(:employments => {:role => 'manager'})
+    end
+  end
+
 end

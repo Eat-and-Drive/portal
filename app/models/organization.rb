@@ -8,6 +8,7 @@ class Organization < ActiveRecord::Base
   has_many :opening_hours, :dependent => :destroy
   has_many :assortments, :dependent => :destroy
   has_many :products, :through => :assortments
+  has_many :campaigns, :dependent => :destroy
   
   has_ancestry
 

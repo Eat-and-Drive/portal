@@ -7,6 +7,9 @@
 .row
   .span6
     %dl.dl-horizontal
+      - if @organization.parent.present?
+        %dt Subsidiary of
+        %dd= link_to @organization.parent.name, @organization.parent
       %dt  Address
       %dd
         = @organization.address

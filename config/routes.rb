@@ -16,6 +16,8 @@ Portal::Application.routes.draw do
     end
   end
   
+  resources :campaigns
+  
   match 'profile' => 'users#profile'
 
   root :to => 'dashboard#index'
@@ -28,6 +30,7 @@ Portal::Application.routes.draw do
     
     controller :organizations do
       get 'organizations' => :index
+      get 'organizations/:id/campaigns' => :campaigns
     end
   end
 
