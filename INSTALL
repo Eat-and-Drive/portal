@@ -1,0 +1,18 @@
+How to install the Eat&Drive
+============================
+
+1. The Eat&Drive portal was developed for Ruby 1.9.3p392, and hasn't been
+   tested on other versions.
+
+2. Run `bundler` to install all the required gems for the E&D portal.
+
+3. Copy config/database.example.yml to config/database.yml and edit the
+   file to suit your needs.
+
+4. Run `rake db:setup`
+
+5. E&D is good to go! An example superuser account has been created for
+   you.
+   
+   E-mailaddress: cas@example.org
+   Password:      cas
