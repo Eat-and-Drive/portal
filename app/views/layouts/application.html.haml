@@ -63,12 +63,3 @@
       %hr
       %footer
         %p &copy; Eat&amp;Drive 2013
-        %p
-          superuser: #{@current_user.superuser? ? 'yes' : 'no'}
-        - if @organization.present?
-          %p
-            head_contact: #{@organization.head_contacts.include?(@current_user) ? 'yes' : 'no'}
-            %br
-            manager: #{@organization.employments.where(:user_id => @current_user.id, :role => 'manager').present? ? 'yes' : 'no'}
-            %br
-            employee: #{@organization.employments.where(:user_id => @current_user.id, :role => 'employee').present? ? 'yes' : 'no'}
