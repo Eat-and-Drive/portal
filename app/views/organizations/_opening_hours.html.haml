@@ -1,0 +1,21 @@
+.row
+  .span6
+    %h2 Standard opening hours
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Day
+          %th Hours
+      %tbody
+        = render :partial => 'opening_hours/opening_hour', :collection => @organization.standard_opening_hours
+  .span6
+    %h2 Special opening hours
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Date
+          %th Hours
+      %tbody#special_opening_hours
+        = render :partial => 'opening_hours/opening_hour', :collection => @organization.special_opening_hours
+    %h4 New record
+    = render 'new_opening_hour'

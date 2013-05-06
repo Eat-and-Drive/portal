@@ -1,0 +1,5 @@
+= simple_form_for [@organization, @special_opening_hour], :html => { :class => 'form-horizontal' }, :remote => true do |f|
+  = f.input :date, :input_html => { :class => 'input-small' }
+  = f.input :from, :input_html => { :class => 'input-mini' }
+  = f.input :to,   :input_html => { :class => 'input-mini' }
+  .form-actions= f.submit

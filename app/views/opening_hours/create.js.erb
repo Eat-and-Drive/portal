@@ -1,0 +1,2 @@
+$('#special_opening_hours').html('<%= j render :partial => 'opening_hours/opening_hour', :collection => @organization.special_opening_hours %>');
+$('#new_opening_hour').replaceWith('<%= j render 'organizations/new_opening_hour' %>');

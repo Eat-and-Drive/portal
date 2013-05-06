@@ -30,7 +30,7 @@ class CreateBaseTables < ActiveRecord::Migration
       t.time :from
       t.time :to
       
-      t.string :day
+      t.integer :day
       t.date :date
       
       t.references :organization

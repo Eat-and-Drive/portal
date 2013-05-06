@@ -1,0 +1,47 @@
+.row
+  .span6
+    %dl.dl-horizontal
+      - if @organization.parent.present?
+        %dt Subsidiary of
+        %dd= link_to @organization.parent.name, @organization.parent
+      %dt  Address
+      %dd
+        = @organization.address
+        %br
+        = @organization.zipcode
+        = @organization.city
+      %dt  Telephone
+      %dd= @organization.telephone
+      %dt  Head contacts
+      %dd#head_contacts
+        = render 'head_contacts'
+  .span6
+    %section
+      %h2 Users
+      #add_user_form
+        = form_for [@organization, Employment.new], :remote => true, :html => {:class => 'form-inline'} do |f|
+          = text_field_tag 'email', '', :placeholder => 'E-mail address', :class => 'input-medium'
+          = select_tag 'role', options_for_select(Employment::ROLES), :class => 'input-medium'
+          = f.submit 'Add'
+      %p#employments
+        = render @organization.employments
+- if @organization.children.present?
+  %h2 Subsidiaries
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Name
+        %th Address
+        %th Zipcode
+        %th City
+        %th Telephone
+        %th
+    %tbody
+      - @organization.children.each do |organization|
+        %tr
+          %td= link_to organization.name, organization
+          %td= organization.address
+          %td= organization.zipcode
+          %td= organization.city
+          %td= organization.telephone
+          %td

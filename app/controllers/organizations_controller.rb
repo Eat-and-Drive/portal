@@ -11,6 +11,7 @@ class OrganizationsController < ApplicationController
   end
   
   def show
+    @special_opening_hour = SpecialOpeningHour.new
   end
   
   def edit

@@ -1,0 +1,11 @@
+= content_tag_for :tr, @opening_hour do
+  - if @opening_hour.type == 'StandardOpeningHour'
+    %td= StandardOpeningHour::DAYS[@opening_hour.day]
+  - else
+    %td= l @opening_hour.date, :format => :long
+  %td
+    = form_for @opening_hour, :remote => true do |form|
+      = form.time_select :from, {}, :class => 'input-mini'
+      &mdash;
+      = form.time_select :to,   {}, :class => 'input-mini'
+      %button.btn.btn-mini{:type => 'submit'}= iconize('', 'ok')
